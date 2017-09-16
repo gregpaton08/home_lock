@@ -24,8 +24,8 @@ def lock_door(lock=True):
     end_time = time.time() + 4
     # Run loop for 4 seconds or until door is at desired state, whichever comes first.
     while lock != is_door_locked() and time.time() < end_time:
-        GPIO.output(4, GPIO.HIGH)
-    GPIO.output(4, GPIO.LOW)
+        GPIO.output(lock_pin, GPIO.HIGH)
+    GPIO.output(lock_pin, GPIO.LOW)
 
 def __debug_is_door_locked():
     current_state = is_door_locked()
@@ -39,6 +39,9 @@ def __debug_is_door_locked():
                     print('Door unlocked')
     except KeyboardInterrupt:
         cleanup()
+
+def __debug_lock_door():
+    pass
 
 if __name__ == '__main__':
     setup()
