@@ -41,8 +41,17 @@ def __debug_is_door_locked():
         cleanup()
 
 def __debug_lock_door():
-    pass
+    print('Debug lock_door()')
+    while True:
+        input = raw_input('Enter \'L\' for lock or \'U\' for unlock: ')
+        if input is 'l':
+            lock_door(True)
+        elif input is 'u':
+            lock_door(False)
+        else:
+            print('Invalid input {0}'.format(input))
 
 if __name__ == '__main__':
     setup()
-    __debug_is_door_locked()
+    # __debug_is_door_locked()
+    __debug_lock_door()
