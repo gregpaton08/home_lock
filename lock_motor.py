@@ -30,6 +30,7 @@ def lock_door(lock=True):
         while lock != is_door_locked() and time.time() < end_time:
             time.sleep(0.1)
         GPIO.output(lock_pin, GPIO.LOW)
+    return lock == is_door_locked()
 
 def __debug_is_door_locked():
     current_state = is_door_locked()
