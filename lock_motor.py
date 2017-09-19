@@ -40,6 +40,7 @@ def __debug_is_door_locked():
                     print('Door Locked')
                 else:
                     print('Door unlocked')
+            time.sleep(0.1)
     except KeyboardInterrupt:
         cleanup()
 
