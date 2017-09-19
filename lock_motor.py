@@ -3,9 +3,10 @@
 import RPi.GPIO as GPIO
 import time
 
-MOTOR_LOCK_PIN = 4
-MOTOR_UNLOCK_PIN = 18 # still need to solder and hook this up.
+MOTOR_LOCK_PIN = 4 # Blue wire out of lock. Pin to set high to lock.
+MOTOR_UNLOCK_PIN = 18 # Orange wire out of lock. Pin to set high to unlock.
 MOTOR_SWITCH_PIN = 17 # Butterfly switch that signals when the lock is opened/closed.
+LOCK_DIRECTION_CLOCKWISE = True # Set depending on the lock direction: True if a clockwise spin locks or FALSE if a counter-clockwise spin locks.
 
 def setup():
     GPIO.setmode(GPIO.BCM)
@@ -17,20 +18,19 @@ def cleanup():
     GPIO.cleanup()
 
 def is_door_locked():
-    return GPIO.input(MOTOR_SWITCH_PIN)
+    return LOCK_DIRECTION_CLOCKWISE != GPIO.input(MOTOR_SWITCH_PIN)
 
 def lock_door(lock=True):
     if lock != is_door_locked():
         lock_pin = MOTOR_LOCK_PIN if lock else MOTOR_UNLOCK_PIN
         time_out = 1 # seconds
         end_time = time.time() + time_out
-        print('End time {0}'.format(end_time))
         # Run loop for time_out seconds or until door is at desired state, whichever comes first.
         GPIO.output(lock_pin, GPIO.HIGH)
         while lock != is_door_locked() and time.time() < end_time:
-            print(time.time())
             time.sleep(0.1)
         GPIO.output(lock_pin, GPIO.LOW)
+    return lock == is_door_locked()
 
 def __debug_is_door_locked():
     current_state = is_door_locked()
@@ -42,6 +42,8 @@ def __debug_is_door_locked():
                     print('Door Locked')
                 else:
                     print('Door unlocked')
+            else:
+                time.sleep(0.1)
     except KeyboardInterrupt:
         cleanup()
 
