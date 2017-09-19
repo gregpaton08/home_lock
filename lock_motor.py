@@ -11,7 +11,7 @@ def setup():
     GPIO.setmode(GPIO.BCM)
     GPIO.setup(MOTOR_LOCK_PIN, GPIO.OUT, initial=GPIO.LOW)
     GPIO.setup(MOTOR_UNLOCK_PIN, GPIO.OUT, initial=GPIO.LOW)
-    GPIO.setup(MOTOR_SWITCH_PIN, GPIO.IN, pull_up_down=GPIO.PUD_DOWN)
+    GPIO.setup(MOTOR_SWITCH_PIN, GPIO.IN, pull_up_down=GPIO.PUD_UP)
 
 def cleanup():
     GPIO.cleanup()
@@ -20,12 +20,17 @@ def is_door_locked():
     return GPIO.input(MOTOR_SWITCH_PIN)
 
 def lock_door(lock=True):
-    lock_pin = MOTOR_LOCK_PIN if lock else MOTOR_UNLOCK_PIN
-    end_time = time.time() + 4
-    # Run loop for 4 seconds or until door is at desired state, whichever comes first.
-    while lock != is_door_locked() and time.time() < end_time:
+    if lock != is_door_locked():
+        lock_pin = MOTOR_LOCK_PIN if lock else MOTOR_UNLOCK_PIN
+        time_out = 1 # seconds
+        end_time = time.time() + time_out
+        print('End time {0}'.format(end_time))
+        # Run loop for time_out seconds or until door is at desired state, whichever comes first.
         GPIO.output(lock_pin, GPIO.HIGH)
-    GPIO.output(lock_pin, GPIO.LOW)
+        while lock != is_door_locked() and time.time() < end_time:
+            print(time.time())
+            time.sleep(0.1)
+        GPIO.output(lock_pin, GPIO.LOW)
 
 def __debug_is_door_locked():
     current_state = is_door_locked()
@@ -42,14 +47,18 @@ def __debug_is_door_locked():
 
 def __debug_lock_door():
     print('Debug lock_door()')
-    while True:
-        input = raw_input('Enter \'L\' for lock or \'U\' for unlock: ')
-        if input is 'l':
-            lock_door(True)
-        elif input is 'u':
-            lock_door(False)
-        else:
-            print('Invalid input {0}'.format(input))
+    try:
+        while True:
+            input = raw_input('Enter \'L\' for lock or \'U\' for unlock: ')
+            if input is 'l':
+                lock_door(True)
+            elif input is 'u':
+                lock_door(False)
+            else:
+                print('Invalid input {0}'.format(input))
+            print('Door is {0}locked'.format('' if is_door_locked() else 'un'))
+    except KeyboardInterrupt:
+        cleanup()
 
 if __name__ == '__main__':
     setup()
