@@ -24,11 +24,9 @@ def lock_door(lock=True):
         lock_pin = MOTOR_LOCK_PIN if lock else MOTOR_UNLOCK_PIN
         time_out = 1 # seconds
         end_time = time.time() + time_out
-        print('End time {0}'.format(end_time))
         # Run loop for time_out seconds or until door is at desired state, whichever comes first.
         GPIO.output(lock_pin, GPIO.HIGH)
         while lock != is_door_locked() and time.time() < end_time:
-            print(time.time())
             time.sleep(0.1)
         GPIO.output(lock_pin, GPIO.LOW)
 
