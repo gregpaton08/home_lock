@@ -3,9 +3,10 @@
 import RPi.GPIO as GPIO
 import time
 
-MOTOR_LOCK_PIN = 4
-MOTOR_UNLOCK_PIN = 18 # still need to solder and hook this up.
+MOTOR_LOCK_PIN = 4 # Blue wire out of lock. Pin to set high to lock.
+MOTOR_UNLOCK_PIN = 18 # Orange wire out of lock. Pin to set high to unlock.
 MOTOR_SWITCH_PIN = 17 # Butterfly switch that signals when the lock is opened/closed.
+LOCK_DIRECTION_CLOCKWISE = True # Set depending on the lock direction: True if a clockwise spin locks or FALSE if a counter-clockwise spin locks.
 
 def setup():
     GPIO.setmode(GPIO.BCM)
@@ -17,7 +18,7 @@ def cleanup():
     GPIO.cleanup()
 
 def is_door_locked():
-    return GPIO.input(MOTOR_SWITCH_PIN)
+    return LOCK_DIRECTION_CLOCKWISE != GPIO.input(MOTOR_SWITCH_PIN)
 
 def lock_door(lock=True):
     if lock != is_door_locked():
