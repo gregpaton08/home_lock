@@ -8,3 +8,4 @@
 [H-Bridge](http://www.modularcircuits.com/blog/articles/h-bridge-secrets/h-bridges-the-basics/)  
 [RPi Push Switch](http://razzpisampler.oreilly.com/ch07.html)  
 [RPi.GPIO](https://sourceforge.net/p/raspberry-gpio-python/wiki/BasicUsage/)  
+[RPi Bluetooth](https://www.raspberrypi.org/forums/viewtopic.php?p=947185#p947185)  
