@@ -12,5 +12,8 @@ def lock_status():
 
 @app.route('/lock')
 def lock():
-    print(request.args)
-    return 'hello_world'
+    should_lock_door = request.args.get('lock', None)
+    if should_lock_door is not none:
+        lock_motor.lock_door(should_lock_door)
+
+    return render_template('index.html')
