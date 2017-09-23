@@ -1,0 +1,10 @@
+#door-lock {
+    margin: auto;
+    width: 50%;
+    height: 100vh;
+}
+
+#door-lock img {
+    margin: auto;
+    vertical-align: middle;
+}
