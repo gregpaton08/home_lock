@@ -5,12 +5,12 @@
     <link href="/static/css/index.css" rel="stylesheet">
 </head>
 <body>
-
-    <a href="lock?lock=true">lock</a>
-    <a href="lock?lock=false">unlock</a>
+    <script type=text/javascript src="{{ url_for('static', filename='jquery.js') }}"></script>
+    <script type=text/javascript src="{{ url_for('static', filename='index.js') }}"></script>
 
     <div id="door-lock">
-        <img src="static/lock.png">
+        <img id="door-lock-img" src="static/lock.png" width="200" height="200">
+        <img id="door-unlock-img" src="static/unlock.png" width="200" height="200">
     </div>
 
 </body>

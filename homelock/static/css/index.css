@@ -5,6 +5,7 @@
 }
 
 #door-lock img {
+    display: block;
     margin: auto;
     vertical-align: middle;
 }
