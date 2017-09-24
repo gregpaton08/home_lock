@@ -2,11 +2,11 @@
 $SCRIPT_ROOT = ''
 
 function updateStatus() {
-    $.getJSON($SCRIPT_ROOT + '/lock_status', {}, function(data) {
+    $.getJSON($SCRIPT_ROOT + '/api/v1/lock_status', {}, function(data) {
         lockImage = document.getElementById('door-lock-img');
         unlockImage = document.getElementById('door-unlock-img');
 
-        if (data.locked) {
+        if (data.status) {
             unlockImage.style.display = 'none';
             lockImage.style.display = 'block';
         } else {
