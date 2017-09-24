@@ -1,9 +1,12 @@
 # To Do
 
 ## Tasks
+* implement restful API
 * improve and test lock logic
+* switch over to RPi zero
 * install RPi zero inside enclosure
 * setup webserver (flask?)
+* add support for BLE
 
 ## Completed Tasks
 * solder wires to motor pins (annotated in notes image)

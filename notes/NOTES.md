@@ -10,3 +10,7 @@
 [RPi.GPIO](https://sourceforge.net/p/raspberry-gpio-python/wiki/BasicUsage/)  
 [RPi Bluetooth](https://www.raspberrypi.org/forums/viewtopic.php?p=947185#p947185)  
 [RPi POE](https://raspberrypi.stackexchange.com/questions/715/how-do-i-modify-my-raspberry-pi-to-be-powered-over-poe)  
+
+###Notes
+[iOS BLE](https://developer.apple.com/library/content/documentation/NetworkingInternetWeb/Conceptual/CoreBluetooth_concepts/PerformingCommonCentralRoleTasks/PerformingCommonCentralRoleTasks.html#//apple_ref/doc/uid/TP40013257-CH3-SW1)
+[RPi Bluetooth discoverable](https://stackoverflow.com/questions/37927606/how-do-i-make-raspberry-pi-3-discoverable-for-ios-and-corebluetooth)
