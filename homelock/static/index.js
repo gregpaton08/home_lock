@@ -18,17 +18,27 @@ function updateStatus() {
 
 $(function() {
     $('#door-lock-img').on("click", function(data) {
-        $.get($SCRIPT_ROOT + '/lock?lock=false', function(data) {
-            updateStatus();
-        });
+        $.ajax({
+            url: '/api/v1/lock_status',
+            method: 'PUT',
+            data: { 'status' : false },
+            success: function() {
+                updateStatus();
+            }
+        })
     });
 });
 
 $(function() {
     $('#door-unlock-img').on("click", function(data) {
-        $.get($SCRIPT_ROOT + '/lock?lock=true', function(data) {
-            updateStatus();
-        });
+        $.ajax({
+            url: '/api/v1/lock_status',
+            method: 'PUT',
+            data: { 'status' : true },
+            success: function() {
+                updateStatus();
+            }
+        })
     });
 });
 
