@@ -2,6 +2,7 @@ from flask import render_template, jsonify, request
 from homelock import app
 import lock_motor
 from flask_restful import Resource, Api, reqparse
+import json
 
 API_URL = '/api/v1/'
 
@@ -30,8 +31,11 @@ class LockAPI(Resource):
         return { 'status' : lock_motor.is_door_locked() }
 
     def put(self):
-        should_lock_door = string_to_boolean(request.form['status'])
-        lock_motor.lock_door(should_lock_door)
+        if not request.is_json:
+            return { 'message' : 'Data provided must be in JSON format.' }, 400
+
+        data = json.loads(request.data)
+        lock_motor.lock_door(data['status'])
         return { 'status' : lock_motor.is_door_locked() }
 
 api.add_resource(LockAPI, API_URL + 'lock_status')

@@ -11,8 +11,8 @@ Wifi + BLE connected deadbolt powered by a Raspberry Pi
 curl http://<RPi address>:<RPi port>/api/v1/lock_status -X GET
 
 # Lock
-curl http://<RPi address>:<RPi port>/api/v1/lock_status -X PUT -d "status=true"
+curl http://<RPi address>:<RPi port>/api/v1/lock_status -X PUT -H "Content-Type: application/json" -d "{\"status\":true}"
 
 # Unlock
-curl http://<RPi address>:<RPi port>/api/v1/lock_status -X PUT -d "status=false"
+curl http://<RPi address>:<RPi port>/api/v1/lock_status -X PUT -H "Content-Type: application/json" -d "{\"status\":false}"
 ```
