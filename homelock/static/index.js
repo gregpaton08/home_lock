@@ -2,11 +2,11 @@
 $SCRIPT_ROOT = ''
 
 function updateStatus() {
-    $.getJSON($SCRIPT_ROOT + '/lock_status', {}, function(data) {
+    $.getJSON($SCRIPT_ROOT + '/api/v1/lock_status', {}, function(data) {
         lockImage = document.getElementById('door-lock-img');
         unlockImage = document.getElementById('door-unlock-img');
 
-        if (data.locked) {
+        if (data.status) {
             unlockImage.style.display = 'none';
             lockImage.style.display = 'block';
         } else {
@@ -18,17 +18,27 @@ function updateStatus() {
 
 $(function() {
     $('#door-lock-img').on("click", function(data) {
-        $.get($SCRIPT_ROOT + '/lock?lock=false', function(data) {
-            updateStatus();
-        });
+        $.ajax({
+            url: '/api/v1/lock_status',
+            method: 'PUT',
+            data: { 'status' : false },
+            success: function() {
+                updateStatus();
+            }
+        })
     });
 });
 
 $(function() {
     $('#door-unlock-img').on("click", function(data) {
-        $.get($SCRIPT_ROOT + '/lock?lock=true', function(data) {
-            updateStatus();
-        });
+        $.ajax({
+            url: '/api/v1/lock_status',
+            method: 'PUT',
+            data: { 'status' : true },
+            success: function() {
+                updateStatus();
+            }
+        })
     });
 });
 
