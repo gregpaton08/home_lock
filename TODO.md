@@ -1,14 +1,16 @@
 # To Do
 
 ## Tasks
-* implement restful API
-* improve and test lock logic
+* improve and test lock logic - UNIT TESTS!
+    * test javascript is working with API
+    * setup so tests can be run on any machine (not hardware dependent) (may require mock objects)
 * switch over to RPi zero
 * install RPi zero inside enclosure
 * setup webserver (flask?)
 * add support for BLE
 
 ## Completed Tasks
+* implement restful API
 * solder wires to motor pins (annotated in notes image)
 * disconnect butterfly switch from circuit board and connect to RPi
 * tie butterfly switch circuit board connection to ground
