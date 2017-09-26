@@ -19,9 +19,11 @@ function updateStatus() {
 $(function() {
     $('#door-lock-img').on("click", function(data) {
         $.ajax({
+            dataType : "json",
+            contentType: "application/json; charset=utf-8",
             url: '/api/v1/lock_status',
             method: 'PUT',
-            data: { 'status' : false },
+            data: JSON.stringify({ 'status' : false }),
             success: function() {
                 updateStatus();
             }
@@ -32,9 +34,11 @@ $(function() {
 $(function() {
     $('#door-unlock-img').on("click", function(data) {
         $.ajax({
+            dataType : "json",
+            contentType: "application/json; charset=utf-8",
             url: '/api/v1/lock_status',
             method: 'PUT',
-            data: { 'status' : true },
+            data: JSON.stringify({ 'status' : true }),
             success: function() {
                 updateStatus();
             }
