@@ -15,3 +15,5 @@
 
 [iOS BLE](https://developer.apple.com/library/content/documentation/NetworkingInternetWeb/Conceptual/CoreBluetooth_concepts/PerformingCommonCentralRoleTasks/PerformingCommonCentralRoleTasks.html#//apple_ref/doc/uid/TP40013257-CH3-SW1)  
 [RPi Bluetooth discoverable](https://stackoverflow.com/questions/37927606/how-do-i-make-raspberry-pi-3-discoverable-for-ios-and-corebluetooth)  
+[RPi BLE thread](https://www.raspberrypi.org/forums/viewtopic.php?t=78838)  
+[RPi BLE thread](https://www.raspberrypi.org/forums/viewtopic.php?p=521067#p521067)  
