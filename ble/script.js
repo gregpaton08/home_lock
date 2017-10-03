@@ -17,6 +17,7 @@ var Characteristic = bleno.Characteristic;
 var characteristic = new Characteristic({
     uuid: characteristicUuid,
     properties: [ 'read', 'write', 'writeWithoutResponse' ],
+    // secure: [ 'write', 'writeWithoutResponse' ],
     descriptors: [ descriptor ],
 
     onReadRequest: function(offset, callback) {
@@ -66,4 +67,8 @@ bleno.on('stateChange', function(state) {
     } else {
         bleno.stopAdvertising();
     }
+});
+
+bleno.on('accept', function(clientAddress) {
+    console.log('accept ' + clientAddress);
 });
