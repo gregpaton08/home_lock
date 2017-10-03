@@ -3,6 +3,9 @@ var exec = require('child_process').exec;
 var execSync = require('child_process').execSync;
 
 const descriptorUuid = '2901';
+const characteristicUuid = 'fff1';
+const primaryServiceUuid = 'fffffffffffffffffffffffffffffff0';
+const serviceUuid = 'fffffffffffffffffffffffffffffff0';
 
 var Descriptor = bleno.Descriptor;
 var descriptor = new Descriptor({
@@ -12,7 +15,7 @@ var descriptor = new Descriptor({
 
 var Characteristic = bleno.Characteristic;
 var characteristic = new Characteristic({
-    uuid: 'fff1',
+    uuid: characteristicUuid,
     properties: [ 'read', 'write', 'writeWithoutResponse' ],
     descriptors: [ descriptor ],
 
@@ -47,7 +50,7 @@ var characteristic = new Characteristic({
 
 var PrimaryService = bleno.PrimaryService;
 var primaryService = new PrimaryService({
-    uuid: 'fffffffffffffffffffffffffffffff0',
+    uuid: primaryServiceUuid,
     characteristics: [ characteristic ]
 });
 
@@ -59,7 +62,7 @@ bleno.on('advertisingStart', function(error) {
 bleno.on('stateChange', function(state) {
     console.log('BLE stateChanged to: ' + state);
     if (state === 'poweredOn') {
-        bleno.startAdvertising('MyDevice', ['fffffffffffffffffffffffffffffff0']);
+        bleno.startAdvertising('home_lock', [ serviceUuid ]);
     } else {
         bleno.stopAdvertising();
     }
