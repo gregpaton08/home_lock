@@ -23,6 +23,8 @@
 [bleno](https://github.com/sandeepmistry/bleno/blob/master/examples/echo/characteristic.js)  
 [bleno tutorial](http://www.raspberry-pi-geek.com/Archive/2014/08/Getting-BLE-to-behave-on-the-Pi/(offset)/2)  
 
+Setup RPi as iBeacon? iPhone will detect and awake, send signal to lock to open it?  
+
 ```
 # Enable BLE broadcast.
 sudo hciconfig hci0 leadv 0
