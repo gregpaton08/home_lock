@@ -2,3 +2,5 @@
 *._*
 flask
 *.pyc
+ble/node_modules/
+
