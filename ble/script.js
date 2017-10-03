@@ -2,10 +2,12 @@ var bleno = require('bleno');
 var exec = require('child_process').exec;
 var execSync = require('child_process').execSync;
 
+const descriptorUuid = '2901';
+
 var Descriptor = bleno.Descriptor;
 var descriptor = new Descriptor({
-    uuid: '2901',
-    value: 'value' // static value, must be of type Buffer or string if set
+    uuid: descriptorUuid,
+    value: 'Get or set the lock status'
 });
 
 var Characteristic = bleno.Characteristic;
@@ -24,11 +26,20 @@ var characteristic = new Characteristic({
     },
 
     onWriteRequest: function(newData, offset, withoutResponse, callback) {
-        console.log('got newData: ' + newData.toString('utf8'));
+        console.log('got newData: ' + newData.readInt8(0));
 
-        // TODO: replace with direct call to hardware once connected to lock.
-        exec('./toggleLock.sh', function(error, stdout, stderr) {
-        });
+        var status = newData.readInt8(0);
+        if (status === -1) {
+            // TODO: replace with direct call to hardware once connected to lock.
+            exec('./lock.sh', function(error, stdout, stderr) {
+            });
+        } else if (status === 0) {
+            // TODO: replace with direct call to hardware once connected to lock.
+            exec('./unlock.sh', function(error, stdout, stderr) {
+            });
+        } else {
+            callback(bleno.Characteristic.RESULT_INVALID_OFFSET);
+        }
 
         callback(bleno.Characteristic.RESULT_SUCCESS);
     }
