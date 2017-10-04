@@ -21,7 +21,7 @@ curl http://<RPi address>:<RPi port>/api/v1/lock_status -X PUT -H "Content-Type:
 
 If wifi connection cuts out intermittently then do the following:
 
-1. Create and edit a conf file
+1. Create and edit a conf file  
 `sudo nano /etc/modprobe.d/8192cu.conf`
 
 2. Write the following, save, and exit.
