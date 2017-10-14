@@ -30,9 +30,8 @@ def lock_door(lock=True):
         while lock != is_door_locked() and time.time() < end_time:
             time.sleep(0.1)
 
-        # If the switch is going from on to off then sleep momentarily to allow the lock to fully turn.
-        if GPIO.input(MOTOR_SWITCH_PIN):
-            time.sleep(0.2)
+        # Sleep momentarily to allow the lock to fully turn.
+        time.sleep(0.5)
 
         GPIO.output(lock_pin, GPIO.LOW)
     return lock == is_door_locked()
