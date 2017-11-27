@@ -23,17 +23,21 @@ def is_door_locked():
 def lock_door(lock=True):
     if lock != is_door_locked():
         lock_pin = MOTOR_LOCK_PIN if lock else MOTOR_UNLOCK_PIN
-        time_out = 1 # seconds
-        end_time = time.time() + time_out
-        # Run loop for time_out seconds or until door is at desired state, whichever comes first.
+        end_time = time.time() + 2 # seconds
+        # Run loop until the timeout is hit or until door is at desired state, whichever comes first.
         GPIO.output(lock_pin, GPIO.HIGH)
-        while lock != is_door_locked() and time.time() < end_time:
+        time_out = False
+        while lock != is_door_locked() and not time_out:
             time.sleep(0.1)
+            if time.time() > end_time:
+                time_out = True
 
         # Sleep momentarily to allow the lock to fully turn.
-        time.sleep(0.5)
+        if not time_out:
+            time.sleep(0.5)
 
         GPIO.output(lock_pin, GPIO.LOW)
+
     return lock == is_door_locked()
 
 def __debug_is_door_locked():
@@ -56,13 +60,19 @@ def __debug_lock_door():
     try:
         while True:
             input = raw_input('Enter \'L\' for lock or \'U\' for unlock: ')
+            status = None
             if input is 'l':
-                lock_door(True)
+                status = True
             elif input is 'u':
-                lock_door(False)
+                status = False
             else:
                 print('Invalid input {0}'.format(input))
-            print('Door is {0}locked'.format('' if is_door_locked() else 'un'))
+                continue
+
+            if lock_door(status):
+                print('Door is {0}locked'.format('' if is_door_locked() else 'un'))
+            else:
+                print('ERROR: failed to {0}lock door'.format('' if status else 'un'))
     except KeyboardInterrupt:
         cleanup()
 
