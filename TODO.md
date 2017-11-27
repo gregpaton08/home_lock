@@ -8,6 +8,7 @@
 * install RPi zero inside enclosure
 * setup webserver (flask?)
 * add support for BLE
+* public/private key encryption for BLE?
 
 ## Completed Tasks
 * implement restful API
