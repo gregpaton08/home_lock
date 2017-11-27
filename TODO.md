@@ -20,3 +20,4 @@
 * sms integration - text code to number to unlock door allowing temporary entry to visitors
 * email integration - same as above, but via email (security is a concern for both)
 * push notification for iOS - get notified whenever door is locked/unlocked
+* run on heroku, control from anywhere (security, security, security)
