@@ -8,14 +8,6 @@ API_URL = '/api/v1/'
 
 api = Api(app)
 
-def string_to_boolean(input_string):
-    if input_string.lower() == 'true':
-        return True
-    elif input_string.lower() == 'false':
-        return False
-
-    return None
-
 @app.route('/')
 def hello_world():
     return render_template('index.html')
