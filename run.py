@@ -1,10 +1,9 @@
-from homelock import app
+from homelock import app, doorlock
 import sys
-import lock_motor
 
 if __name__ == '__main__':
-    lock_motor.setup()
+    doorlock.lock_motor.setup()
     try:
         app.run(host='0.0.0.0', port=sys.argv[1])
     finally:
-        lock_motor.cleanup()
+        doorlock.lock_motor.cleanup()

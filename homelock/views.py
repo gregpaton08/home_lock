@@ -1,6 +1,6 @@
 from flask import render_template, jsonify, request
 from homelock import app
-import lock_motor
+from doorlock import lock_motor
 from flask_restful import Resource, Api, reqparse
 import json
 
