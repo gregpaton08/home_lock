@@ -53,7 +53,7 @@ def __debug_is_door_locked():
             else:
                 time.sleep(0.1)
     except KeyboardInterrupt:
-        cleanup()
+        pass#cleanup()
 
 def __debug_lock_door():
     print('Debug lock_door()')

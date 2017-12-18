@@ -36,6 +36,6 @@ class LockAPI(Resource):
 
         data = json.loads(request.data)
         lock_motor.lock_door(data['status'])
-        return { 'status' : lock_motor.is_door_locked() }
+        return self.get()
 
 api.add_resource(LockAPI, API_URL + 'lock_status')
