@@ -40,6 +40,37 @@ def lock_door(lock=True):
 
     return lock == is_door_locked()
 
+class DoorLock:
+    def __init__(self):
+        GPIO.setmode(GPIO.BCM)
+        GPIO.setup(MOTOR_LOCK_PIN, GPIO.OUT, initial=GPIO.LOW)
+        GPIO.setup(MOTOR_UNLOCK_PIN, GPIO.OUT, initial=GPIO.LOW)
+        GPIO.setup(MOTOR_SWITCH_PIN, GPIO.IN, pull_up_down=GPIO.PUD_UP)
+
+    def set(self, status):
+        if status != self.get():
+            lock_pin = MOTOR_LOCK_PIN if status else MOTOR_UNLOCK_PIN
+            end_time = time.time() + 2 # seconds
+            # Run loop until the timeout is hit or until door is at desired state, whichever comes first.
+            GPIO.output(lock_pin, GPIO.HIGH)
+            time_out = False
+            while status != self.get() and not time_out:
+                time.sleep(0.1)
+                if time.time() > end_time:
+                    time_out = True
+
+            # Sleep momentarily to allow the lock to fully turn.
+            if not time_out:
+                time.sleep(0.5)
+
+            GPIO.output(lock_pin, GPIO.LOW)
+
+        return status == self.get()
+
+    def get(self):
+        return LOCK_DIRECTION_CLOCKWISE != GPIO.input(MOTOR_SWITCH_PIN)
+
+
 def __debug_is_door_locked():
     current_state = is_door_locked()
     try:
