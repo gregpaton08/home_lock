@@ -1,4 +1,4 @@
-from flask import render_template, jsonify, request
+from flask import render_template, request
 from homelock import app
 from doorlock import DoorLock
 from flask_restful import Resource, Api
