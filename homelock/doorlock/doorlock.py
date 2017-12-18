@@ -14,8 +14,6 @@ def setup():
     GPIO.setup(MOTOR_UNLOCK_PIN, GPIO.OUT, initial=GPIO.LOW)
     GPIO.setup(MOTOR_SWITCH_PIN, GPIO.IN, pull_up_down=GPIO.PUD_UP)
 
-def cleanup():
-    GPIO.cleanup()
 
 def is_door_locked():
     return LOCK_DIRECTION_CLOCKWISE != GPIO.input(MOTOR_SWITCH_PIN)
@@ -46,6 +44,9 @@ class DoorLock:
         GPIO.setup(MOTOR_LOCK_PIN, GPIO.OUT, initial=GPIO.LOW)
         GPIO.setup(MOTOR_UNLOCK_PIN, GPIO.OUT, initial=GPIO.LOW)
         GPIO.setup(MOTOR_SWITCH_PIN, GPIO.IN, pull_up_down=GPIO.PUD_UP)
+    
+    def cleanup():
+        GPIO.cleanup()
 
     def set(self, status):
         if status != self.get():
