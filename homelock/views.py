@@ -1,7 +1,7 @@
 from flask import render_template, jsonify, request
 from homelock import app
 from doorlock import DoorLock
-from flask_restful import Resource, Api, reqparse
+from flask_restful import Resource, Api
 import json
 
 API_URL = '/api/v1/'
@@ -16,9 +16,6 @@ def hello_world():
 class LockAPI(Resource):
     def __init__(self):
         self.lock = DoorLock()
-    #     self.reqparse = reqparse.RequestParser()
-    #     self.reqparse.add_argument('status', type = bool, required = True, help = 'Door lock status', location = 'json')
-    #     super(LockAPI, self).__init__()
 
     def get(self):
         return { 'status' : self.lock.get() }
