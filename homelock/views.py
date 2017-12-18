@@ -1,6 +1,6 @@
 from flask import render_template, jsonify, request
 from homelock import app
-from doorlock import lock_motor
+from doorlock import doorlock
 from flask_restful import Resource, Api, reqparse
 import json
 
@@ -20,14 +20,14 @@ class LockAPI(Resource):
     #     super(LockAPI, self).__init__()
 
     def get(self):
-        return { 'status' : lock_motor.is_door_locked() }
+        return { 'status' : doorlock.is_door_locked() }
 
     def put(self):
         if not request.is_json:
             return { 'message' : 'Data provided must be in JSON format.' }, 400
 
         data = json.loads(request.data)
-        lock_motor.lock_door(data['status'])
+        doorlock.lock_door(data['status'])
         return self.get()
 
 api.add_resource(LockAPI, API_URL + 'lock_status')
