@@ -3,24 +3,24 @@
 import RPi.GPIO as GPIO
 import time
 
-MOTOR_LOCK_PIN = 4 # Blue wire out of lock. Pin to set high to lock.
-MOTOR_UNLOCK_PIN = 18 # Orange wire out of lock. Pin to set high to unlock.
-MOTOR_SWITCH_PIN = 17 # Butterfly switch that signals when the lock is opened/closed.
-LOCK_DIRECTION_CLOCKWISE = True # Set depending on the lock direction: True if a clockwise spin locks or FALSE if a counter-clockwise spin locks.
-
 class DoorLock:
     def __init__(self):
+        self.__motor_lock_pin = 4 # Blue wire out of lock. Pin to set high to lock.
+        self.__motor_unlock_pin = 18 # Orange wire out of lock. Pin to set high to unlock.
+        self.__motor_switch_pin = 17 # Butterfly switch that signals when the lock is opened/closed.
+        self.__lock_direction_clockwise = True # Set depending on the lock direction: True if a clockwise spin locks or FALSE if a counter-clockwise spin locks.
+
         GPIO.setmode(GPIO.BCM)
-        GPIO.setup(MOTOR_LOCK_PIN, GPIO.OUT, initial=GPIO.LOW)
-        GPIO.setup(MOTOR_UNLOCK_PIN, GPIO.OUT, initial=GPIO.LOW)
-        GPIO.setup(MOTOR_SWITCH_PIN, GPIO.IN, pull_up_down=GPIO.PUD_UP)
+        GPIO.setup(self.__motor_lock_pin, GPIO.OUT, initial=GPIO.LOW)
+        GPIO.setup(self.__motor_unlock_pin, GPIO.OUT, initial=GPIO.LOW)
+        GPIO.setup(self.__motor_switch_pin, GPIO.IN, pull_up_down=GPIO.PUD_UP)
     
     def cleanup():
         GPIO.cleanup()
 
     def set(self, status):
         if status != self.get():
-            lock_pin = MOTOR_LOCK_PIN if status else MOTOR_UNLOCK_PIN
+            lock_pin = self.__motor_lock_pin if status else self.__motor_unlock_pin
             end_time = time.time() + 2 # seconds
             # Run loop until the timeout is hit or until door is at desired state, whichever comes first.
             GPIO.output(lock_pin, GPIO.HIGH)
@@ -39,7 +39,7 @@ class DoorLock:
         return status == self.get()
 
     def get(self):
-        return LOCK_DIRECTION_CLOCKWISE != GPIO.input(MOTOR_SWITCH_PIN)
+        return self.__lock_direction_clockwise != GPIO.input(self.__motor_switch_pin)
 
 
 def __debug_is_door_locked():
@@ -78,6 +78,5 @@ def __debug_lock_door():
         pass
 
 if __name__ == '__main__':
-    setup()
     # __debug_is_door_locked()
     __debug_lock_door()
