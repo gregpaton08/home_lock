@@ -1,1 +1,1 @@
-import doorlock
+from doorlock import DoorLock
