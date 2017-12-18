@@ -9,6 +9,7 @@
 * setup webserver (flask?)
 * add support for BLE
 * public/private key encryption for BLE?
+* log history of lock/unlock (use database)
 
 ## Completed Tasks
 * implement restful API
