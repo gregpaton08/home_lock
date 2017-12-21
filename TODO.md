@@ -10,6 +10,7 @@
 * add support for BLE
 * public/private key encryption for BLE?
 * log history of lock/unlock (use database)
+* research: does August Lock wifi hub require port forwarding?
 
 ## Completed Tasks
 * implement restful API

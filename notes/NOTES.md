@@ -13,6 +13,8 @@
 
 ### Notes
 
+does August Lock wifi hub require port forwarding?  
+
 #### BLE
 
 [iOS BLE](https://developer.apple.com/library/content/documentation/NetworkingInternetWeb/Conceptual/CoreBluetooth_concepts/PerformingCommonCentralRoleTasks/PerformingCommonCentralRoleTasks.html#//apple_ref/doc/uid/TP40013257-CH3-SW1)  
@@ -23,7 +25,8 @@
 [bleno](https://github.com/sandeepmistry/bleno/blob/master/examples/echo/characteristic.js)  
 [bleno tutorial](http://www.raspberry-pi-geek.com/Archive/2014/08/Getting-BLE-to-behave-on-the-Pi/(offset)/2)  
 
-Setup RPi as iBeacon? iPhone will detect and awake, send signal to lock to open it?  
+~~Setup RPi as iBeacon? iPhone will detect and awake, send signal to lock to open it?~~  
+^ Use iPhones location change to run app in background
 
 ```
 # Enable BLE broadcast.
