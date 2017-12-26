@@ -11,6 +11,8 @@
 * public/private key encryption for BLE?
 * log history of lock/unlock (use database)
 * research: does August Lock wifi hub require port forwarding?
+  * [Reverse engineering the Nest](http://experimental-platform.tumblr.com/post/137835649425/reverse-engineering-google-nest-devices)
+  * websockets? set [this](https://www.raspberrypi.org/forums/viewtopic.php?t=115936)
 
 ## Completed Tasks
 * implement restful API
