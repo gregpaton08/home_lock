@@ -27,7 +27,8 @@ curl http://192.168.1.168:5555/api/v1/lock_status -X PUT -H "Content-Type: appli
 [bleno](https://github.com/sandeepmistry/bleno/blob/master/examples/echo/characteristic.js)  
 [bleno tutorial](http://www.raspberry-pi-geek.com/Archive/2014/08/Getting-BLE-to-behave-on-the-Pi/(offset)/2)  
 
-Setup RPi as iBeacon? iPhone will detect and awake, send signal to lock to open it?  
+~~Setup RPi as iBeacon? iPhone will detect and awake, send signal to lock to open it?~~  
+^ Use iPhones location change to run app in background
 
 ```
 # Enable BLE broadcast.

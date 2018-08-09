@@ -9,6 +9,13 @@
 * add support for BLE
     * public/private key encryption for BLE?
 * log history of lock/unlock (use database)
+* research: does August Lock wifi hub require port forwarding?
+  * [Reverse engineering the Nest](http://experimental-platform.tumblr.com/post/137835649425/reverse-engineering-google-nest-devices)
+  * websockets? see [this](https://www.raspberrypi.org/forums/viewtopic.php?t=115936)
+  * [REST streaming](https://developers.nest.com/documentation/cloud/rest-streaming-guide)
+  * [WebSockets](https://www.pubnub.com/blog/2015-01-05-websockets-vs-rest-api-understanding-the-difference/)
+  * [socket.io](https://socket.io/)
+    * [sample code](https://github.com/socketio/socket.io/tree/master/examples/chat)
 * push notifications to iPhone when door locked/unlocked
 
 ## Completed Tasks
