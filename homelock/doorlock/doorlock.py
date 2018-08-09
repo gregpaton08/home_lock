@@ -5,7 +5,7 @@ class DoorLock:
     def __init__(self):
         self.__motor_lock_pin = 4 # Blue wire out of lock. Pin to set high to lock.
         self.__motor_unlock_pin = 18 # Orange wire out of lock. Pin to set high to unlock.
-        self.__motor_switch_pin = 17 # Butterfly switch that signals when the lock is opened/closed.
+        self.__motor_switch_pin = 27 # Butterfly switch that signals when the lock is opened/closed.
         self.__lock_direction_clockwise = True # Set depending on the lock direction: True if a clockwise spin locks or FALSE if a counter-clockwise spin locks.
 
         GPIO.setmode(GPIO.BCM)

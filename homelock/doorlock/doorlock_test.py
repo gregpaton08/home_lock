@@ -1,6 +1,7 @@
 #!flask/bin/python
 
 from doorlock import DoorLock
+import time
 
 def __debug_is_door_locked():
     lock = DoorLock()
@@ -38,5 +39,5 @@ def __debug_lock_door():
         pass
 
 if __name__ == '__main__':
-    # __debug_is_door_locked()
-    __debug_lock_door()
+    __debug_is_door_locked()
+    # __debug_lock_door()
