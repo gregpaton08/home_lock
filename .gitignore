@@ -1,6 +1,7 @@
 *.DS_Store
 *._*
-flask
+venv
 *.pyc
 ble/node_modules/
-
+environment
+flask

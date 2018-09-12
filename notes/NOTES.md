@@ -1,5 +1,11 @@
 # Notes
 
+## REST API
+
+curl http://192.168.1.168:5555/api/v1/lock_status -X PUT -H "Content-Type: application/json" -d "{\"status\":true}"
+
+curl http://192.168.1.168:5555/api/v1/lock_status -X PUT -H "Content-Type: application/json" -d "{\"status\":false}"
+
 ## References
 
 [PT4303](http://www.dzsc.com/uploadfile/company/307703/201246135150265.pdf)  
@@ -11,9 +17,7 @@
 [RPi Bluetooth](https://www.raspberrypi.org/forums/viewtopic.php?p=947185#p947185)  
 [RPi POE](https://raspberrypi.stackexchange.com/questions/715/how-do-i-modify-my-raspberry-pi-to-be-powered-over-poe)  
 
-### Notes
-
-#### BLE
+## BLE
 
 [iOS BLE](https://developer.apple.com/library/content/documentation/NetworkingInternetWeb/Conceptual/CoreBluetooth_concepts/PerformingCommonCentralRoleTasks/PerformingCommonCentralRoleTasks.html#//apple_ref/doc/uid/TP40013257-CH3-SW1)  
 [RPi Bluetooth discoverable](https://stackoverflow.com/questions/37927606/how-do-i-make-raspberry-pi-3-discoverable-for-ios-and-corebluetooth)  
@@ -23,7 +27,8 @@
 [bleno](https://github.com/sandeepmistry/bleno/blob/master/examples/echo/characteristic.js)  
 [bleno tutorial](http://www.raspberry-pi-geek.com/Archive/2014/08/Getting-BLE-to-behave-on-the-Pi/(offset)/2)  
 
-Setup RPi as iBeacon? iPhone will detect and awake, send signal to lock to open it?  
+~~Setup RPi as iBeacon? iPhone will detect and awake, send signal to lock to open it?~~  
+^ Use iPhones location change to run app in background
 
 ```
 # Enable BLE broadcast.
