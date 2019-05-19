@@ -1,6 +1,6 @@
 from flask import render_template, request
 from homelock import app
-from doorlock import DoorLock
+from doorlockcontroller import DoorLockController
 from flask_restful import Resource, Api
 import json
 
@@ -15,7 +15,7 @@ def hello_world():
 
 class LockAPI(Resource):
     def __init__(self):
-        self.lock = DoorLock()
+        self.lock = DoorLockController()
 
     def get(self):
         return { 'status' : self.lock.get() }
