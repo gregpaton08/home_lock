@@ -1,7 +1,7 @@
 import RPi.GPIO as GPIO
 import time
 
-class DoorLock:
+class DoorLockController:
     def __init__(self):
         self.__motor_lock_pin = 4 # Blue wire out of lock. Pin to set high to lock.
         self.__motor_unlock_pin = 18 # Orange wire out of lock. Pin to set high to unlock.

@@ -1,10 +1,10 @@
 #!flask/bin/python
 
-from doorlock import DoorLock
+from DoorLockControllercontroller import DoorLockController
 import time
 
 def __debug_is_door_locked():
-    lock = DoorLock()
+    lock = DoorLockController()
     current_state = lock.get()
     try:
         while True:
@@ -17,7 +17,7 @@ def __debug_is_door_locked():
         pass
 
 def __debug_lock_door():
-    lock = DoorLock()
+    lock = DoorLockController()
     print('Debug lock_door()')
     try:
         while True:

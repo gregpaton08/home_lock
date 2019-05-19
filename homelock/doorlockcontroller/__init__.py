@@ -1,1 +1,1 @@
-from doorlockcontroller import DoorLock
+from doorlockcontroller import DoorLockController
