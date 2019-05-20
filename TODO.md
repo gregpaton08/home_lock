@@ -18,6 +18,7 @@
     * [sample code](https://github.com/socketio/socket.io/tree/master/examples/chat)
 * push notifications to iPhone when door locked/unlocked
 * Port server code to node.js? BLE library is in node, so sort of makes sense
+* Debounce the lock switch in hardware using a capacitor
 
 ## Completed Tasks
 * implement restful API

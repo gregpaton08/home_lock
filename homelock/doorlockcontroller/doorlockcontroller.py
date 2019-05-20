@@ -1,8 +1,12 @@
 import RPi.GPIO as GPIO
 import time
+import datetime
+import sys
+
 
 class DoorLockController:
     def __init__(self):
+        GPIO.cleanup()
         self.__motor_lock_pin = 4 # Blue wire out of lock. Pin to set high to lock.
         self.__motor_unlock_pin = 18 # Orange wire out of lock. Pin to set high to unlock.
         self.__motor_switch_pin = 27 # Butterfly switch that signals when the lock is opened/closed.
@@ -12,9 +16,17 @@ class DoorLockController:
         GPIO.setup(self.__motor_lock_pin, GPIO.OUT, initial=GPIO.LOW)
         GPIO.setup(self.__motor_unlock_pin, GPIO.OUT, initial=GPIO.LOW)
         GPIO.setup(self.__motor_switch_pin, GPIO.IN, pull_up_down=GPIO.PUD_UP)
+
+        GPIO.add_event_detect(self.__motor_switch_pin, GPIO.BOTH, callback=self.status_change_callback)
+        # GPIO.add_event_detect(self.__motor_switch_pin, GPIO.BOTH, callback=self.status_change_callback, bouncetime=100)
     
     def cleanup():
         GPIO.cleanup()
+    
+    def status_change_callback(self, channel):
+        # time.sleep(1)
+        print(str(datetime.datetime.now()) + ': Door ' + ('locked' if self.get() else 'unlocked'))
+        sys.stdout.flush()
 
     def set(self, status):
         if status != self.get():
@@ -36,5 +48,6 @@ class DoorLockController:
 
         return status == self.get()
 
+    # Get the status of the door lock. Returns True if locked or False if unlocked.
     def get(self):
         return self.__lock_direction_clockwise != GPIO.input(self.__motor_switch_pin)
