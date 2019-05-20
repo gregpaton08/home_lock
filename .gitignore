@@ -3,5 +3,4 @@
 venv
 *.pyc
 ble/node_modules/
-environment
 flask
