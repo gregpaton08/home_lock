@@ -14,11 +14,13 @@
   * websockets? see [this](https://www.raspberrypi.org/forums/viewtopic.php?t=115936)
   * [REST streaming](https://developers.nest.com/documentation/cloud/rest-streaming-guide)
   * [WebSockets](https://www.pubnub.com/blog/2015-01-05-websockets-vs-rest-api-understanding-the-difference/)
-  * [socket.io](https://socket.io/)
+  * [socket.io](https://socket.io/) <- do not use, except may need to for iOS and self-signed cert
     * [sample code](https://github.com/socketio/socket.io/tree/master/examples/chat)
 * push notifications to iPhone when door locked/unlocked
 * Port server code to node.js? BLE library is in node, so sort of makes sense
-* Debounce the lock switch in hardware using a capacitor
+* Debounce the lock switch in hardware using a capacitor, add pull down/up resistor
+* HTTPS (letsencrypt?)
+* LAN -> WAN : point a domain to the lock so that it can be accessed from anywhere
 
 ## Completed Tasks
 * implement restful API
