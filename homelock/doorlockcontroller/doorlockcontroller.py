@@ -9,7 +9,7 @@ class DoorLockController:
         GPIO.cleanup()
         self.__motor_lock_pin = 4 # Blue wire out of lock. Pin to set high to lock.
         self.__motor_unlock_pin = 18 # Orange wire out of lock. Pin to set high to unlock.
-        self.__motor_switch_pin = 27 # Butterfly switch that signals when the lock is opened/closed.
+        self.__motor_switch_pin = 27 # Limit switch that signals when the lock is opened/closed.
         self.__lock_direction_clockwise = True # Set depending on the lock direction: True if a clockwise spin locks or FALSE if a counter-clockwise spin locks.
 
         GPIO.setmode(GPIO.BCM)
@@ -18,15 +18,19 @@ class DoorLockController:
         GPIO.setup(self.__motor_switch_pin, GPIO.IN, pull_up_down=GPIO.PUD_UP)
 
         GPIO.add_event_detect(self.__motor_switch_pin, GPIO.BOTH, callback=self.status_change_callback)
-        # GPIO.add_event_detect(self.__motor_switch_pin, GPIO.BOTH, callback=self.status_change_callback, bouncetime=100)
-    
+
+	self.last_event_time = 0
+
     def cleanup():
         GPIO.cleanup()
-    
+
     def status_change_callback(self, channel):
-        # time.sleep(1)
-        print(str(datetime.datetime.now()) + ': Door ' + ('locked' if self.get() else 'unlocked'))
-        sys.stdout.flush()
+	# Debounce the switch.
+	current_time = time.time()
+	if current_time - self.last_event_time > 0.25:
+		self.last_event_time = current_time
+		print(str(datetime.datetime.now()) + ': Door ' + ('locked' if self.get() else 'unlocked'))
+		sys.stdout.flush()
 
     def set(self, status):
         if status != self.get():
@@ -42,7 +46,7 @@ class DoorLockController:
 
             # Sleep momentarily to allow the lock to fully turn.
             if not time_out:
-                time.sleep(0.5)
+                time.sleep(0.25)
 
             GPIO.output(lock_pin, GPIO.LOW)
 
