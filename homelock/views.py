@@ -17,6 +17,9 @@ class LockAPI(Resource):
     def __init__(self):
         self.lock = DoorLockController()
 
+    def __repr__(self):
+        return "%s()" % (self.__class__)
+
     def get(self):
         return { 'status' : self.lock.get() }
 

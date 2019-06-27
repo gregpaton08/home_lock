@@ -13,6 +13,9 @@ class DoorLockController:
         GPIO.setup(self.__motor_unlock_pin, GPIO.OUT, initial=GPIO.LOW)
         GPIO.setup(self.__motor_switch_pin, GPIO.IN, pull_up_down=GPIO.PUD_UP)
     
+    def __repr__(self):
+        return "%s()" % (self.__class__)
+
     def cleanup():
         GPIO.cleanup()
 
