@@ -37,3 +37,9 @@ sudo hciconfig hci0 leadv 0
 # Advertise BLE service.
 sudo hcitool -i hci0 cmd 0x08 0x0008 15 02 01 1a 11 07 41 42 43 44 45 46 47 48 49 4a 4b 4c 4d 4e 4f 50 00 00 00 00 00 00 00 00 00 00
 ```
+
+## Motor
+
+The model of the motor is [FC-280SA-2865](https://product.mabuchi-motor.com/detail.html?id=48). According to the data sheet the current draw can go up to 5A (!) during a stall, which is well over the ~200ma output of the Raspberry Pi 5V pin. May want to find a way to limit this current draw. Also will want to power it separately from the RPi, instead of off of the 5V pin.
+
+![FC-280SA data sheet](FC-280SA.png)
