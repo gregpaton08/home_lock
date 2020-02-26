@@ -2,6 +2,26 @@
 
 Wifi + BLE connected deadbolt powered by a Raspberry Pi
 
+## Deployment
+
+### Prerequisites
+
+Install the prerequisite packages.
+
+```bash
+sudo sudo apt-get install -y python3-pip
+python3 -m pip install --user --upgrade pip
+python3 -m pip install --user virtualenv
+```
+
+Add the script to `cron` to start up on boot.
+
+```bash
+sudo crontab -
+# add the following line
+# @reboot nohup /home/pi/home_lock/run.sh &
+```
+
 ## Interacting with the API
 
 ### CURL
