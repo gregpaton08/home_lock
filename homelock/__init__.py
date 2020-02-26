@@ -1,2 +1,2 @@
-from homelock import app
-import views
+from .homelock import app
+from . import views
