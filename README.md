@@ -67,3 +67,10 @@ source env/bin/activate
 # exit
 deactivate
 ```
+
+# Updating pip Packages
+
+```bash
+pip install -r environment/requirements.txt --upgrade
+pip freeze > environment/requirements.txt
+```
