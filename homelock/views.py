@@ -1,6 +1,6 @@
 from flask import render_template, request
-from homelock import app
-from doorlockcontroller import DoorLockController
+from .homelock import app
+from .doorlockcontroller import DoorLockController
 from flask_restful import Resource, Api
 import json
 
