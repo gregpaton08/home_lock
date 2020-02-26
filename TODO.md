@@ -1,6 +1,7 @@
 # To Do
 
 ## Tasks
+* Update to Python3
 * improve and test lock logic - UNIT TESTS!
     * test javascript is working with API
     * setup so tests can be run on any machine (not hardware dependent) (may require mock objects)
