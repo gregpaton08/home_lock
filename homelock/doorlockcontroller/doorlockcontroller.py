@@ -29,12 +29,12 @@ class DoorLockController:
         GPIO.cleanup()
 
     def status_change_callback(self, channel):
-	# Debounce the switch.
-	current_time = time.time()
-	if current_time - self.last_event_time > 0.25:
-		self.last_event_time = current_time
-		print(str(datetime.datetime.now()) + ': Door ' + ('locked' if self.get() else 'unlocked'))
-		sys.stdout.flush()
+        # Debounce the switch.
+        current_time = time.time()
+        if current_time - self.last_event_time > 0.25:
+            self.last_event_time = current_time
+            print(str(datetime.datetime.now()) + ': Door ' + ('locked' if self.get() else 'unlocked'))
+            sys.stdout.flush()
 
     def set(self, status):
         if status != self.get():
