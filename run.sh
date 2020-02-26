@@ -7,6 +7,4 @@ cd ${DIR}
 # Set up the virtual environment.
 ./environment/setup.sh
 
-source venv/bin/activate
-
-python run.py 5555 &>> "/var/log/home_lock.txt"
+venv/bin/python run.py 5555 &>> "/var/log/home_lock.txt"
