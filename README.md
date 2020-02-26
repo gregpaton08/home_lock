@@ -56,3 +56,14 @@ options 8192cu rtw_power_mgnt=0 rtw_enusbss=0
 ```
 sudo reboot
 ```
+
+## Misc.
+
+### Accessing the virtualenv
+
+```bash
+# enter
+source env/bin/activate
+# exit
+deactivate
+```
