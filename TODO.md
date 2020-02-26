@@ -1,7 +1,6 @@
 # To Do
 
 ## Tasks
-* Update to Python3
 * improve and test lock logic - UNIT TESTS!
     * test javascript is working with API
     * setup so tests can be run on any machine (not hardware dependent) (may require mock objects)
@@ -29,6 +28,7 @@
 * disconnect butterfly switch from circuit board and connect to RPi
 * tie butterfly switch circuit board connection to ground
 * setup webserver (flask?)
+* Update to Python3
 
 ## Stretch goals
 * sms integration - text code to number to unlock door allowing temporary entry to visitors

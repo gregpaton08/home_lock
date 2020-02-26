@@ -6,6 +6,6 @@ cd ${DIR}/..
 
 venv_dir="venv"
 if [ ! -d "$venv_dir" ]; then
-    virtualenv venv
+    python3 -m venv venv
     venv/bin/pip install -r ${DIR}/requirements.txt
 fi
