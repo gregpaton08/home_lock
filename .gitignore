@@ -4,3 +4,5 @@ venv
 *.pyc
 ble/node_modules/
 flask
+nohup.out
+
